@@ -3,16 +3,17 @@ package org.shivam.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.shivam.beans.LoginBean;
+import org.shivam.beans.RegistrationBean;
 
-public class LoginDao {
+public class RegistrationDao {
 
-	public boolean validate(LoginBean loginBean) throws ClassNotFoundException {
+	public int registerUser(RegistrationBean registrationBean) throws ClassNotFoundException {
+		String INSERT_USERS_SQL = "INSERT INTO user" + "  (first_name, last_name, username, password) VALUES "
+				+ " (?, ?, ?, ?);";
 
-		boolean status = false;
+		int result = 0;
 
 		Class.forName("com.mysql.cj.jdbc.Driver");
 
@@ -20,21 +21,22 @@ public class LoginDao {
 				"root", "745826");
 
 				// Step 2:Create a statement using connection object
-				PreparedStatement preparedStatement = connection
-						.prepareStatement("select * from user where username = ? and password = ? ")) {
-			preparedStatement.setString(1, loginBean.getUsername());
-			preparedStatement.setString(2, loginBean.getPassword());
+				PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL)) {
+//			preparedStatement.setInt(1, 1);
+			preparedStatement.setString(1, registrationBean.getFirstName());
+			preparedStatement.setString(2, registrationBean.getLastName());
+			preparedStatement.setString(3, registrationBean.getUsername());
+			preparedStatement.setString(4, registrationBean.getPassword());
 
 			System.out.println(preparedStatement);
-			ResultSet rs = preparedStatement.executeQuery();
-			status = rs.next();
+			// Step 3: Execute the query or update query
+			result = preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
 			// process sql exception
 			printSQLException(e);
 		}
-		return status;
-
+		return result;
 	}
 
 	private void printSQLException(SQLException ex) {

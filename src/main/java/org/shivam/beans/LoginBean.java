@@ -1,4 +1,4 @@
-package org.shivam.loginbean;
+package org.shivam.beans;
 
 import java.io.Serializable;
 

@@ -10,7 +10,7 @@
 
 	<h1>Login Form.jsp</h1>
 
-	<form action="LoginSuccess.jsp" method="post">
+	<form action="<%=request.getContextPath()%>/login" method="post">
 		<table style="with: 100%">
 			<tr>
 				<td>UserName</td>

@@ -1,15 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-
-<%@page import="org.shivam.dao.*"%>
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Login Success.jsp</title>
+<title>Login failure</title>
 </head>
 <body>
-	<h1>Login Successfull</h1>
+
+	<h1>Login failure</h1>
+
 </body>
 </html>
